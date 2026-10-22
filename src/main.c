@@ -10,15 +10,19 @@
 #include "../include/inventory.h"
 #include "../include/utils.h"
 
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
 /**
  * @brief Displays the top-level system navigation menu.
  */
 static void render_menu(void) {
     printf(COLOR_CYAN);
     printf("╔════════════════════════════════════════════════════════════════════════════╗\n");
-    printf("║                         CONTROL DASHBOARD RUNTIME                          ║\n");
+    printf("║                    CONTROL DASHBOARD RUNTIME                               ║\n");
     printf("╠════════════════════════════════════════════════════════════════════════════╣\n");
-    printf("║  1. Register New Donor (Triage Validation & Immediate Intake)               ║\n");
+    printf("║  1. Register New Donor (Triage Validation & Immediate Intake)              ║\n");
     printf("║  2. Tabulate All Donor Records                                             ║\n");
     printf("║  3. Query Donor Record by Unique ID                                        ║\n");
     printf("║  4. Query Donors by Blood Group Designation                                ║\n");
@@ -33,6 +37,22 @@ static void render_menu(void) {
 }
 
 int main(void) {
+#ifdef _WIN32
+    /* Force UTF-8 code page so Windows terminals render Unicode box characters correctly */
+    SetConsoleOutputCP(65001);
+    SetConsoleCP(65001);
+
+    /* Enable ANSI escape sequence processing for colors and UI layout on Windows */
+    HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+    if (hOut != INVALID_HANDLE_VALUE) {
+        DWORD dwMode = 0;
+        if (GetConsoleMode(hOut, &dwMode)) {
+            dwMode |= ENABLE_VIRTUAL_TERMINAL_PROCESSING;
+            SetConsoleMode(hOut, dwMode);
+        }
+    }
+#endif
+
     BloodInventory inventory;
 
     /* Initialize core subsystems */
