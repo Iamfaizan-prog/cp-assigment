@@ -1,0 +1,11 @@
+BloodBankSystem/
+├── include/
+│   ├── donor.h
+│   ├── inventory.h
+│   └── utils.h
+├── src/
+│   ├── main.c
+│   ├── donor.c
+│   ├── inventory.c
+│   └── utils.c
+└── Makefile
