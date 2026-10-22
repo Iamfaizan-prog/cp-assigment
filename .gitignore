@@ -1,4 +1,14 @@
+# Compiled C files
 *.out
 *.exe
 *.o
+*.obj
+*.dll
+*.dylib
+
+# OS garbage
 .DS_Store
+Thumbs.db
+
+# VS Code clutter (optional, but saves your sanity)
+.vscode/
