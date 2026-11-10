@@ -1,1 +1,1 @@
-WE SO COOL
+idk idc idgaf
